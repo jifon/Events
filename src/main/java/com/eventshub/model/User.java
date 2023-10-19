@@ -11,6 +11,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -72,6 +73,12 @@ public class User {
         this.enabled =false;
         this.dateCreated = LocalDateTime.now();
     }
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Event> events;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Club> clubs;
 
 
 }
