@@ -4,11 +4,13 @@ import com.eventshub.model.Club;
 import com.eventshub.model.Event;
 import com.eventshub.model.User;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 public interface ClubService {
 
-    Set<Club> getAll();
+    List<Club> getAll();
 
     Club create(Club club, String imageURL);
     Club getByID(Long id);

@@ -8,6 +8,8 @@ import com.eventshub.services.ClubService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -17,8 +19,8 @@ public class ClubServiceImpl implements ClubService {
     private final ClubRepository clubRepository;
 
     @Override
-    public Set<Club> getAll() {
-        return (Set<Club>) clubRepository.findAll();
+    public List<Club> getAll() {
+        return clubRepository.findAll();
     }
 
     @Override
