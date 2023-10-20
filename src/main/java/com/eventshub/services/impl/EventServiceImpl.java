@@ -67,6 +67,8 @@ public class EventServiceImpl implements EventService {
         List<Event> notFiltered = eventRepository.findAll();
         for(Event event : notFiltered){
             if(currentDate.before(event.getDate())){
+                System.out.println("Cuurent Date " + currentDate);
+                System.out.println("Date of event " + event.getDate());
                 filteredData.add(event);
             }
         }
@@ -80,6 +82,7 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public Event saveEvent(Event event) {
+
         return eventRepository.save(event);
     }
 

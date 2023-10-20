@@ -60,7 +60,9 @@ public class EventController {
     @Operation(summary = "Create new event")
     @PostMapping("/create")
     ResponseEntity<?> createEvent(@RequestBody Event event){
-        return ResponseEntity.ok(eventService.saveEvent(event));
+        eventService.saveEvent(event);
+
+        return ResponseEntity.ok(HttpStatus.OK);
     }
 
     @Operation(summary = "Get club")
