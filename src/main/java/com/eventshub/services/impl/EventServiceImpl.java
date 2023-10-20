@@ -88,8 +88,8 @@ public class EventServiceImpl implements EventService {
 
     //    get info about event
     @Override
-    public Event findEventById(Long id) {
-        return eventRepository.findById(id).get();
+    public Optional<Event> findEventById(Long id) {
+        return eventRepository.findById(id);
     }
 
     @Override

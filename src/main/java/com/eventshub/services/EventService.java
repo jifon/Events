@@ -2,11 +2,10 @@ package com.eventshub.services;
 
 
 import com.eventshub.model.Event;
-import com.eventshub.model.User;
-import com.eventshub.payload.dto.EventDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public interface EventService {
@@ -22,11 +21,9 @@ public interface EventService {
 
 
     // Поиск мероприятия по id
-    Event findEventById(Long id);
+    Optional<Event> findEventById(Long id);
 
     Event findEventByName(String name);
-
-    EventDto eventToEventDto(Event event);
 
 
 }

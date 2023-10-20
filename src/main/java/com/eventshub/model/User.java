@@ -70,8 +70,8 @@ public class User {
     @OneToMany(mappedBy = "organizer", cascade = CascadeType.ALL)
     private Set<Event> createdEvents;
 
-    @ManyToMany(mappedBy = "participants")
-    private Set<Event> participatedEvents;
+//    @ManyToMany(mappedBy = "participants")
+//    private Set<Event> participatedEvents;
 
     public User(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
@@ -81,6 +81,13 @@ public class User {
         this.enabled =false;
         this.dateCreated = LocalDateTime.now();
     }
+
+//    public void addParticipatedEvent(Event event) {
+//        if (participatedEvents == null) {
+//            participatedEvents = new HashSet<>();
+//        }
+//        participatedEvents.add(event);
+//    }
 
 }
 

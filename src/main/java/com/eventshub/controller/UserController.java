@@ -24,17 +24,13 @@ public class UserController {
     private final UserServiceImpl userService;
 
 
-//    @Operation(summary = "create new event")
-//    @PostMapping("/event-create")
-//    public ResponseEntity<MessageResponse> createEvent(@Valid @RequestBody SignupRequest signUpRequest)
-//            throws MessagingException, UnsupportedEncodingException {
-//        userService.registerUser(signUpRequest);
-//        return ResponseEntity.ok(new MessageResponse("Check your email"));
-//    }
-
-
-
-
+    @Operation(summary = "participate in event")
+    @PostMapping("/event-participate/{eventId}")
+    public ResponseEntity<MessageResponse> participateInEvent(@PathVariable Long eventId )
+            throws MessagingException, UnsupportedEncodingException {
+        userService.participateInEvent(eventId);
+        return ResponseEntity.ok(new MessageResponse("success"));
+    }
 
 
     @Operation(summary = "get events user organizes")
@@ -43,11 +39,11 @@ public class UserController {
         return ResponseEntity.ok(userService.getAllCreatedEvents());
     }
 
-    @Operation(summary = "get events that I will participate")
-    @GetMapping("/all-my-part-events")
-    ResponseEntity<?> getAllEventsThatParticipate(){
-        return ResponseEntity.ok(userService.getAllParticipatedEvents());
-    }
+//    @Operation(summary = "get events that I will participate")
+//    @GetMapping("/all-my-part-events")
+//    ResponseEntity<?> getAllEventsThatParticipate(){
+//        return ResponseEntity.ok(userService.getAllParticipatedEvents());
+//    }
 
     @Operation(summary = "get my owned clubs")
     @GetMapping("/all-my-owned-clubs")
