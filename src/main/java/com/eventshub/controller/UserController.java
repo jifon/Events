@@ -1,6 +1,7 @@
 package com.eventshub.controller;
 
 import com.eventshub.services.impl.UserServiceImpl;
+import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/user")
+@Api()
+
 public class UserController {
 
     private final UserServiceImpl userService;
@@ -21,6 +24,9 @@ public class UserController {
     ResponseEntity<?> getAllNotDeletedUsers() {
         return ResponseEntity.ok(userService.getAllNotDeletedUsers());
     }
+
+
+
 
     @Operation(summary = "Delete user by id")
     @DeleteMapping("/{id}")

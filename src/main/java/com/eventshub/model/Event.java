@@ -42,4 +42,6 @@ public class Event {
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
     private Set<User> participants;
+
+
 }
