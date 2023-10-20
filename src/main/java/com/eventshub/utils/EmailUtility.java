@@ -14,7 +14,7 @@ public class EmailUtility {
 
     //    final String siteURL =
 //            ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
-    private final String siteURL = "http://localhost:8080/";
+    private final String siteURL = "https://events-production-6139.up.railway.app/";
     public void sendVerificationEmail(User user, JavaMailSender mailSender)
             throws MessagingException, UnsupportedEncodingException {
         String toAddress = user.getEmail();
