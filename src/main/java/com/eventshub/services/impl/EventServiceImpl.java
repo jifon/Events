@@ -3,14 +3,12 @@ package com.eventshub.services.impl;
 import com.eventshub.model.Club;
 import com.eventshub.model.Event;
 import com.eventshub.model.User;
+import com.eventshub.payload.dto.ParticipantEventDto;
 import com.eventshub.repository.EventRepository;
 import com.eventshub.services.EventService;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class EventServiceImpl implements EventService {
@@ -79,10 +77,23 @@ public class EventServiceImpl implements EventService {
 
 
     // get participants    id - id мероприятия
-    public Set<User> getParticipants(Long id){
-        return eventRepository.findEventById(id).getParticipants();
+    public Set<ParticipantEventDto> getParticipants(Long id){
+        Set<User> users = eventRepository.findEventById(id).getParticipants();
+        Set<ParticipantEventDto> participantEventDtos = new HashSet<>();
+        for(User user : users){
+            ParticipantEventDto dto = new ParticipantEventDto();
+            dto.setFirstName(user.getFirstName());
+            dto.setLastName(user.getLastName());
+            dto.setId(user.getId());
+            participantEventDtos.add(dto);
+
+        }
+        return participantEventDtos;
     }
 
+//    public Set<User> getParticipants(Long id){
+//        return eventRepository.findById(id).get().getParticipants();
+//    }
 
     // get club organizer
     public Club getClub (Long id){

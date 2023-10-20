@@ -14,7 +14,6 @@ import java.util.Set;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
 @Getter
 @Setter
 @JsonIgnoreProperties({ "subscribedClubs", "ownedClubs", "createdEvents", "participatedEvents" })
