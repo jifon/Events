@@ -1,5 +1,6 @@
 package com.eventshub.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +12,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -19,6 +19,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Getter
 @Setter
+@JsonIgnoreProperties({ "subscribedClubs", "ownedClubs", "createdEvents", "participatedEvents" })
 @Table(	name = "users")
 public class User {
 
@@ -80,9 +81,6 @@ public class User {
         this.enabled =false;
         this.dateCreated = LocalDateTime.now();
     }
-
-
-
 
 }
 

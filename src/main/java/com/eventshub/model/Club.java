@@ -1,12 +1,12 @@
 package com.eventshub.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -14,6 +14,7 @@ import java.util.Set;
 @Table(name = "club")
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties({ "subscribers", "headers", "clubsEvents" })
 public class Club {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

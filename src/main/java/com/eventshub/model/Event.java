@@ -2,6 +2,7 @@ package com.eventshub.model;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,6 +17,7 @@ import java.util.Set;
 @Table(name = "event")
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties({ "organizer", "participants" })
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,11 +1,17 @@
 package com.eventshub.controller;
 
+import com.eventshub.payload.request.SignupRequest;
+import com.eventshub.payload.response.MessageResponse;
 import com.eventshub.services.impl.UserServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.mail.MessagingException;
+import javax.validation.Valid;
+import java.io.UnsupportedEncodingException;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -18,13 +24,25 @@ public class UserController {
     private final UserServiceImpl userService;
 
 
+//    @Operation(summary = "create new event")
+//    @PostMapping("/event-create")
+//    public ResponseEntity<MessageResponse> createEvent(@Valid @RequestBody SignupRequest signUpRequest)
+//            throws MessagingException, UnsupportedEncodingException {
+//        userService.registerUser(signUpRequest);
+//        return ResponseEntity.ok(new MessageResponse("Check your email"));
+//    }
+
+
+
+
+
+
     @Operation(summary = "get events user organizes")
     @GetMapping("/all-my-org-events")
     ResponseEntity<?> getAllCreatedEvents( ){
         return ResponseEntity.ok(userService.getAllCreatedEvents());
     }
 
-    //events example
     @Operation(summary = "get events that I will participate")
     @GetMapping("/all-my-part-events")
     ResponseEntity<?> getAllEventsThatParticipate(){

@@ -31,14 +31,14 @@ public class AuthController {
 
 
     @Operation(summary = "login")
-    @PostMapping("/sign-in")//логин
+    @PostMapping("/sign-in")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
         return authService.authenticateUser(loginRequest);
     }
 
 
     @Operation(summary = "registration")
-    @PostMapping("/sign-up")//регистрация
+    @PostMapping("/sign-up")
     public ResponseEntity<MessageResponse> registerUser(@Valid @RequestBody SignupRequest signUpRequest)
             throws MessagingException, UnsupportedEncodingException {
         authService.registerUser(signUpRequest);
@@ -47,7 +47,7 @@ public class AuthController {
 
 
     @Operation(summary = "Verification")
-    @GetMapping("/verifyUser")//рерификация кода который пришел на поч
+    @GetMapping("/verifyUser")
     public ResponseEntity<MessageResponse> verifyUser(@Param("code") String code) {
         if (authService.verifyUser(code)) {
             return ResponseEntity.ok(new MessageResponse("verify_success"));
