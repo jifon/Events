@@ -25,7 +25,7 @@ public class ClubServiceImpl implements ClubService {
 
     private final ClubRepository clubRepository;
     private final EventService eventService;
-    private final FileUploadService fileUploadService;
+    //private final FileUploadService fileUploadService;
     private final EventRepository eventRepository;
 
     @Override
@@ -35,18 +35,19 @@ public class ClubServiceImpl implements ClubService {
 
     @Override
     public Club create(Long userID, ClubRequest clubRequest) {
-        String imageURL;
-        try {
-            imageURL = fileUploadService.uploadFile(clubRequest.getMultipartFile());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        Set<User> users = new HashSet<>();
-        Club club = new Club(
-                clubRequest.getClubName(),
-                clubRequest.getDescription(),
-                imageURL);
-        return club;
+//        String imageURL;
+//        try {
+//            imageURL = fileUploadService.uploadFile(clubRequest.getMultipartFile());
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//        Set<User> users = new HashSet<>();
+//        Club club = new Club(
+//                clubRequest.getClubName(),
+//                clubRequest.getDescription(),
+//                imageURL);
+//        return club;
+        return null;
     }
 
     @Override
