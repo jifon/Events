@@ -4,12 +4,16 @@ import com.eventshub.model.Club;
 import com.eventshub.model.Event;
 import com.eventshub.model.User;
 import com.eventshub.payload.dto.EventDto;
+import com.eventshub.payload.request.ClubRequest;
 import com.eventshub.repository.ClubRepository;
+import com.eventshub.repository.EventRepository;
 import com.eventshub.services.ClubService;
 import com.eventshub.services.EventService;
+import com.eventshub.services.FileUploadService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -21,6 +25,8 @@ public class ClubServiceImpl implements ClubService {
 
     private final ClubRepository clubRepository;
     private final EventService eventService;
+    //private final FileUploadService fileUploadService;
+    private final EventRepository eventRepository;
 
     @Override
     public List<Club> getAll() {
@@ -28,8 +34,20 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
-    public Club create(Club club, String imageURL) {
-        return clubRepository.save(club);
+    public Club create(Long userID, ClubRequest clubRequest) {
+//        String imageURL;
+//        try {
+//            imageURL = fileUploadService.uploadFile(clubRequest.getMultipartFile());
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//        Set<User> users = new HashSet<>();
+//        Club club = new Club(
+//                clubRequest.getClubName(),
+//                clubRequest.getDescription(),
+//                imageURL);
+//        return club;
+        return null;
     }
 
     @Override
@@ -53,14 +71,16 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
-    public Set<EventDto> getEventsByClubs(Long id) {
-        Set<Event> events = clubRepository.findClubById(id).getClubsEvents();
-        Set<EventDto> dtos = new HashSet<>();
-        for(Event event : events){
-            EventDto dto = eventService.eventToEventDto(event);
-            dtos.add(dto);
-
-        }
-        return dtos;
+    public List<Event> getEventsByClubs(Long clubId) {
+        List<Event> events = eventRepository.findAllEventsByClub(clubId);
+//        Set<Event> events = clubRepository.findClubById(id).getClubsEvents();
+//        Set<EventDto> dtos = new HashSet<>();
+//        for(Event event : events){
+//            EventDto dto = eventService.eventToEventDto(event);
+//            dtos.add(dto);
+//
+//        }
+//        return dtos;
+        return events;
     }
 }

@@ -57,15 +57,11 @@ public class UserController {
         return ResponseEntity.ok(userService.getAllMySubscribedClubs());
     }
 
-
     @Operation(summary = "Get all not deleted users")
     @GetMapping("/all-not-deleted")
     ResponseEntity<?> getAllNotDeletedUsers() {
         return ResponseEntity.ok(userService.getAllNotDeletedUsers());
     }
-
-
-
 
     @Operation(summary = "Delete user by id")
     @DeleteMapping("/{id}")
@@ -90,10 +86,5 @@ public class UserController {
     ResponseEntity<?> getAllUsers() {
         return ResponseEntity.ok(userService.getAllUsers());
     }
-
-
-
-
-
 
 }

@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -42,7 +43,18 @@ public class Club {
     private Set<User> headers;
 
 //    @JsonIgnore
+<<<<<<< HEAD
     @OneToMany(mappedBy = "clubOrganizer", cascade = CascadeType.ALL)
     private Set<Event> clubsEvents;
+=======
+//    @OneToMany(mappedBy = "clubOrganizer", cascade = CascadeType.ALL)
+//    private Set<Event> clubsEvents  = new HashSet<>();;
+>>>>>>> origin/master
 
+    public Club(String clubName, String description, String image) {
+        this.clubName = clubName;
+        this.description = description;
+        this.image = image;
+        this.subscribers = new HashSet<>();
+    }
 }
