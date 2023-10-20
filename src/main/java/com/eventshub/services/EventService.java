@@ -3,6 +3,7 @@ package com.eventshub.services;
 
 import com.eventshub.model.Event;
 import com.eventshub.model.User;
+import com.eventshub.payload.dto.EventDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,6 +25,8 @@ public interface EventService {
     Event findEventById(Long id);
 
     Event findEventByName(String name);
+
+    EventDto eventToEventDto(Event event);
 
 
 }

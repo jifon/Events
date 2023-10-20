@@ -3,12 +3,15 @@ package com.eventshub.services.impl;
 import com.eventshub.model.Club;
 import com.eventshub.model.Event;
 import com.eventshub.model.User;
+import com.eventshub.payload.dto.EventDto;
 import com.eventshub.repository.ClubRepository;
 import com.eventshub.services.ClubService;
+import com.eventshub.services.EventService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -17,6 +20,7 @@ import java.util.Set;
 public class ClubServiceImpl implements ClubService {
 
     private final ClubRepository clubRepository;
+    private final EventService eventService;
 
     @Override
     public List<Club> getAll() {
@@ -49,7 +53,14 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
-    public Set<Event> getEventsByClubs(Long id) {
-        return clubRepository.findClubById(id).getClubsEvents();
+    public Set<EventDto> getEventsByClubs(Long id) {
+        Set<Event> events = clubRepository.findClubById(id).getClubsEvents();
+        Set<EventDto> dtos = new HashSet<>();
+        for(Event event : events){
+            EventDto dto = eventService.eventToEventDto(event);
+            dtos.add(dto);
+
+        }
+        return dtos;
     }
 }

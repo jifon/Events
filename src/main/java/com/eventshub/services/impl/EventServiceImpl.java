@@ -31,6 +31,7 @@ public class EventServiceImpl implements EventService {
         this.eventRepository = eventRepository;
     }
 
+    @Override
     public EventDto eventToEventDto(Event event) {
         EventDto eventDto = new EventDto();
         eventDto.setId(event.getId());
