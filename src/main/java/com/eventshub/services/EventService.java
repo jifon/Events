@@ -3,10 +3,12 @@ package com.eventshub.services;
 
 import com.eventshub.model.Club;
 import com.eventshub.model.Event;
+import com.eventshub.model.User;
 import com.eventshub.payload.dto.EditEventDto;
 import com.eventshub.payload.dto.EventDto;
 import com.eventshub.payload.dto.ParticipantEventDto;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,7 +23,9 @@ public interface EventService {
     List<Event> getAll();
 
     // Создание новых мероприятий
-    Event saveEvent(Event event);
+    //Event saveEvent(Event event);
+
+    Event saveEvent(EventDto eventDto, MultipartFile img, User user);
 
     // Удаления мероприятий
     void deleteEvent(Long id);

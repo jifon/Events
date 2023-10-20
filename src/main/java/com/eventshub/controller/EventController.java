@@ -1,13 +1,17 @@
 package com.eventshub.controller;
 
 import com.eventshub.model.Event;
+import com.eventshub.payload.dto.EditEventDto;
+import com.eventshub.payload.dto.EventDto;
 import com.eventshub.services.EventService;
 import com.eventshub.services.impl.EventServiceImpl;
+import com.eventshub.services.impl.UserServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -17,6 +21,7 @@ public class EventController {
 
     private final EventService eventService;
 
+    private final UserServiceImpl userService;
 
     @Operation(summary = "get all events")
     @GetMapping("/all")
@@ -59,11 +64,13 @@ public class EventController {
 
     @Operation(summary = "Create new event")
     @PostMapping("/create")
-    ResponseEntity<?> createEvent(@RequestBody Event event){
-        eventService.saveEvent(event);
-
+    ResponseEntity<?> createEvent(@RequestBody EventDto eventDto,
+                                  @RequestPart MultipartFile img){
+        eventService.saveEvent(eventDto, img, userService.getCurrentUser());
         return ResponseEntity.ok(HttpStatus.OK);
     }
+
+
 
     @Operation(summary = "Get club")
     @GetMapping("/{id}/club")

@@ -8,11 +8,17 @@ import com.eventshub.payload.dto.EventDto;
 import com.eventshub.payload.dto.ParticipantEventDto;
 import com.eventshub.repository.EventRepository;
 import com.eventshub.services.EventService;
+import com.eventshub.services.FileUploadService;
+import com.eventshub.services.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.*;
 
 @Service
+@RequiredArgsConstructor
 public class EventServiceImpl implements EventService {
 
 //    Event
@@ -27,10 +33,12 @@ public class EventServiceImpl implements EventService {
 
 
     private final EventRepository eventRepository;
+    private final FileUploadServiceImpl fileUploadService;
+    //private final UserServiceImpl userService;
 
-    public EventServiceImpl(EventRepository eventRepository) {
-        this.eventRepository = eventRepository;
-    }
+//    public EventServiceImpl(EventRepository eventRepository) {
+//        this.eventRepository = eventRepository;
+//    }
 
     @Override
     public EventDto eventToEventDto(Event event) {
@@ -81,8 +89,22 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Event saveEvent(Event event) {
-
+    public Event saveEvent(EventDto eventDto, MultipartFile img, User user) {
+        String imageURL;
+        try {
+            imageURL = fileUploadService.uploadFile(img);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Event event = new Event();
+        event.setEventName(eventDto.getEventName());
+        event.setDate(eventDto.getDate());
+        event.setDescription(eventDto.getDescription());
+        event.setPlace(eventDto.getPlace());
+        event.setOrganizer(user);
+        event.setVerified(true);
+        event.setImage(imageURL);
+        event.setParticipants(new HashSet<>());
         return eventRepository.save(event);
     }
 
@@ -152,6 +174,17 @@ public class EventServiceImpl implements EventService {
 
         eventRepository.save(event);
     }
+
+//    @Override
+//    public void editEvent(EventDto eventDto) {
+//        Event event = eventRepository.findEventById(eventDto.getId());
+//        event.setEventName(eventDto.getEventName());
+//        event.setDescription(eventDto.getDescription());
+//        event.setDate(eventDto.getDate());
+//        event.setPlace(eventDto.getPlace());
+//
+//        eventRepository.save(event);
+//    }
 
     @Override
     public List<Event> getAllExpiredEvent() {
