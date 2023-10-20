@@ -72,7 +72,6 @@ public class User {
     @ManyToMany(mappedBy = "participants")
     private Set<Event> participatedEvents;
 
-
     public User(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;

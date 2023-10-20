@@ -41,4 +41,5 @@ public class Club {
 
     @OneToMany(mappedBy = "clubOrganizer", cascade = CascadeType.ALL)
     private Set<Event> clubsEvents;
+
 }
