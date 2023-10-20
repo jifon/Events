@@ -5,6 +5,7 @@ import com.eventshub.services.EventService;
 import com.eventshub.services.impl.EventServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -56,14 +57,9 @@ public class EventController {
     }
 
 
-
-
-
-
-
-
-
-
-
-
+    @DeleteMapping("/{id}/delete")
+    ResponseEntity<?> deleteEvent(@PathVariable Long id){
+        eventService.deleteEvent(id);
+        return ResponseEntity.ok(HttpStatus.OK);
+    }
 }

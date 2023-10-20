@@ -21,13 +21,13 @@ public interface EventRepository extends JpaRepository<Event, Long> {
 
     Event findEventByEventName(String eventName);
 
-<<<<<<< HEAD
-    List<Event> findEventByClubOrganizer(Long id);
-=======
+//<<<<<<< HEAD
+//    List<Event> findEventByClubOrganizer(Long id);
+//=======
     @Query("SELECT e FROM Event e WHERE e.clubOrganizer.id = :cid")
     List<Event> findAllEventsByClub(@RequestParam Long cid);
 
->>>>>>> origin/master
+//>>>>>>> origin/master
 
 
 

@@ -3,6 +3,7 @@ package com.eventshub.services;
 
 import com.eventshub.model.Club;
 import com.eventshub.model.Event;
+import com.eventshub.payload.dto.EditEventDto;
 import com.eventshub.payload.dto.EventDto;
 import com.eventshub.payload.dto.ParticipantEventDto;
 import org.springframework.stereotype.Service;
@@ -39,6 +40,12 @@ public interface EventService {
     Set<ParticipantEventDto> getParticipants(Long id);
 
     Club getClub (Long id);
+
+
+    void editEvent (EditEventDto eventDto);
+
+
+
 
 
 }
