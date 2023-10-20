@@ -36,6 +36,7 @@ public class AuthController {
     }
 
 
+
     @PostMapping("/sign-up")//регистрация
     public ResponseEntity<MessageResponse> registerUser(@Valid @RequestBody SignupRequest signUpRequest)
             throws MessagingException, UnsupportedEncodingException {

@@ -25,6 +25,6 @@ public class Club {
     @OneToMany(cascade = CascadeType.ALL)
     private List<User> headsAndFollowers;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Club> clubs;
+//    @OneToMany(cascade = CascadeType.ALL)
+//    private List<Club> clubs;
 }
