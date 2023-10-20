@@ -1,6 +1,7 @@
 package com.eventshub.controller;
 
 import com.eventshub.model.Event;
+import com.eventshub.services.EventService;
 import com.eventshub.services.impl.EventServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/event")
 public class EventController {
 
-    private final EventServiceImpl eventService;
+    private final EventService eventService;
 
 
     @Operation(summary = "get all events")
@@ -53,6 +54,9 @@ public class EventController {
     ResponseEntity<?> getClubOrg(@PathVariable Long id){
         return ResponseEntity.ok(eventService.getClub(id));
     }
+
+
+
 
 
 

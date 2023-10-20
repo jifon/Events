@@ -72,6 +72,7 @@ public class EventServiceImpl implements EventService {
         return filteredData;
     }
 
+    @Override
     public List<Event> getAll(){
         return eventRepository.findAll();
     }
@@ -99,6 +100,7 @@ public class EventServiceImpl implements EventService {
 
 
     //    get organizer-user   id - id мероприятия
+    @Override
     public ParticipantEventDto getOrganizer(Long id){
         User user = eventRepository.findEventById(id).getOrganizer();
         ParticipantEventDto dto = new ParticipantEventDto();
@@ -111,6 +113,7 @@ public class EventServiceImpl implements EventService {
 
 
     // get participants    id - id мероприятия
+    @Override
     public Set<ParticipantEventDto> getParticipants(Long id){
         Set<User> users = eventRepository.findEventById(id).getParticipants();
         Set<ParticipantEventDto> participantEventDtos = new HashSet<>();
@@ -130,15 +133,16 @@ public class EventServiceImpl implements EventService {
 //    }
 
     // get club organizer
+    @Override
     public Club getClub (Long id){
         return  eventRepository.findEventById(id).getClubOrganizer();
     }
 
 
 
-    public List<Event> getEventsByClub(Long id){
-        return eventRepository.findEventByClubOrganizer(id);
-    }
+//    public List<Event> getEventsByClub(Long id){
+//        return eventRepository.findEventByClubOrganizer(id);
+//    }
 
 
 
