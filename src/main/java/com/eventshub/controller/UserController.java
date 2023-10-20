@@ -59,7 +59,7 @@ public class UserController {
         return ResponseEntity.ok(userService.deleteUserById(id));
     }
 
-    @Operation(summary = "Get not deleted user by id")
+
     @GetMapping("/{id}")
     ResponseEntity<?> getNotDeletedUserById(@PathVariable Long id) {
         return ResponseEntity.ok(userService.getNotDeletedUserById(id));
@@ -76,6 +76,9 @@ public class UserController {
     ResponseEntity<?> getAllUsers() {
         return ResponseEntity.ok(userService.getAllUsers());
     }
+
+
+
 
 
 

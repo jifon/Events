@@ -5,12 +5,14 @@ import com.eventshub.model.Event;
 import com.eventshub.model.User;
 import com.eventshub.repository.EventRepository;
 import com.eventshub.services.EventService;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+@Service
 public class EventServiceImpl implements EventService {
 
 //    Event
@@ -21,6 +23,8 @@ public class EventServiceImpl implements EventService {
 //    post create event by user
 //    post create event by club
 //    post edit club by organizer
+    // поиск
+
 
     private final EventRepository eventRepository;
 
@@ -65,7 +69,7 @@ public class EventServiceImpl implements EventService {
 
 
     //    get organizer-user   id - id мероприятия
-    public User getOrganizers(Long id){
+    public User getOrganizer(Long id){
         return eventRepository.findEventById(id).getOrganizer();
     }
 
@@ -80,6 +84,8 @@ public class EventServiceImpl implements EventService {
     public Club getClub (Long id){
         return  eventRepository.findEventById(id).getClubOrganizer();
     }
+
+
 
 
 
