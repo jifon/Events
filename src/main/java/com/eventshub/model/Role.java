@@ -1,5 +1,6 @@
 package com.eventshub.model;
 
+import com.eventshub.model.enums.ERole;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

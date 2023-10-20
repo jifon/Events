@@ -12,7 +12,7 @@ import java.io.UnsupportedEncodingException;
 @UtilityClass
 public class EmailUtility {
 
-//    final String siteURL =
+    //    final String siteURL =
 //            ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
     private final String siteURL = "http://localhost:8080/";
     public void sendVerificationEmail(User user, JavaMailSender mailSender)
@@ -25,7 +25,7 @@ public class EmailUtility {
                 + "Please click the link below to verify your registration:<br>"
                 + "<h3><a href=\"[[URL]]\" target=\"_self\">VERIFY</a></h3>"
                 + "Thank you,<br>"
-                + "Rent It.";
+                + "Eve.";
 
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);

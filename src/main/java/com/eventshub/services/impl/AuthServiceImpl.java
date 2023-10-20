@@ -1,6 +1,6 @@
 package com.eventshub.services.impl;
 
-import com.eventshub.model.ERole;
+import com.eventshub.model.enums.ERole;
 import com.eventshub.model.RefreshToken;
 import com.eventshub.model.Role;
 import com.eventshub.model.User;
@@ -85,7 +85,7 @@ public class AuthServiceImpl {
         if (signUpRequest.getEmail() != null &
                 userRepository.existsByEmail(signUpRequest.getEmail().toLowerCase())) {
             throw new EmailAlreadyExistsException("Error: Email " + signUpRequest.getEmail() + " is already in use!");
-           }
+        }
 
         // Create new user's account
         User user = new User(
@@ -145,6 +145,13 @@ public class AuthServiceImpl {
 
 
 }
+
+
+
+
+
+
+
 
 
 

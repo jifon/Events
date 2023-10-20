@@ -44,7 +44,7 @@ public class AuthController {
     }
 
 
-    @GetMapping("/verifyUser")
+    @GetMapping("/verifyUser")//рерификация кода который пришел на поч
     public ResponseEntity<MessageResponse> verifyUser(@Param("code") String code) {
         if (authService.verifyUser(code)) {
             return ResponseEntity.ok(new MessageResponse("verify_success"));
