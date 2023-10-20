@@ -24,6 +24,19 @@ public class EventController {
         return ResponseEntity.ok(eventService.getAll());
     }
 
+    @Operation(summary = "get all not expired events")
+    @GetMapping("/all-not-expired")
+    ResponseEntity<?> getAllNotExpiredEvents(){
+        return ResponseEntity.ok(eventService.getAllNotExpired());
+    }
+
+    @Operation(summary = "get all expired events")
+    @GetMapping("/all-expired")
+    ResponseEntity<?> getAllExpiredEvents(){
+        return ResponseEntity.ok(eventService.getAllExpiredEvent());
+    }
+
+
     @Operation(summary = "Get information about one Event")
     @GetMapping("/{id}")
     ResponseEntity<?> infoAboutEvent(@PathVariable Long id){

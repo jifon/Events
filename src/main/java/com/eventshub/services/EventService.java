@@ -44,6 +44,8 @@ public interface EventService {
 
     void editEvent (EditEventDto eventDto);
 
+    List<Event> getAllExpiredEvent();
+
 
 
 

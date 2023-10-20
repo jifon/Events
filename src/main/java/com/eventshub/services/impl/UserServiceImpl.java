@@ -105,6 +105,12 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    @Override
+    public Set<Event> getAllParticipatedEvents(){
+        return getAuthentication().getParticipatedEvents();
+    }
+
+
 
     public User getCurrentUser() {
         return getAuthentication();

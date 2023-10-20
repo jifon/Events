@@ -150,5 +150,19 @@ public class EventServiceImpl implements EventService {
         eventRepository.save(event);
     }
 
+    @Override
+    public List<Event> getAllExpiredEvent() {
+        Date currentDate = new Date();
+        List<Event> filteredData = new ArrayList<>();
+        List<Event> notFiltered = eventRepository.findAll();
+        for(Event event : notFiltered){
+            if(currentDate.after(event.getDate())){
+                filteredData.add(event);
+            }
+        }
+        return filteredData;
+
+    }
+
 
 }
