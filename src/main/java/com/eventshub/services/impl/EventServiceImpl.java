@@ -98,8 +98,14 @@ public class EventServiceImpl implements EventService {
 
 
     //    get organizer-user   id - id мероприятия
-    public User getOrganizer(Long id){
-        return eventRepository.findEventById(id).getOrganizer();
+    public ParticipantEventDto getOrganizer(Long id){
+        User user = eventRepository.findEventById(id).getOrganizer();
+        ParticipantEventDto dto = new ParticipantEventDto();
+        dto.setId(user.getId());
+        dto.setLastName(user.getLastName());
+        dto.setFirstName(user.getFirstName());
+
+        return dto;
     }
 
 
@@ -126,6 +132,14 @@ public class EventServiceImpl implements EventService {
     public Club getClub (Long id){
         return  eventRepository.findEventById(id).getClubOrganizer();
     }
+
+
+
+    public List<Event> getEventsByClub(Long id){
+        return eventRepository.findEventByClubOrganizer(id);
+    }
+
+
 
 
 

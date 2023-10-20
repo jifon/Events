@@ -41,7 +41,7 @@ public class Club {
     )
     private Set<User> headers;
 
-    @JsonIgnore
+//    @JsonIgnore
     @OneToMany(mappedBy = "clubOrganizer", cascade = CascadeType.ALL)
     private Set<Event> clubsEvents;
 

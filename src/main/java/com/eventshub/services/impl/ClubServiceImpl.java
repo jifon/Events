@@ -8,7 +8,6 @@ import com.eventshub.services.ClubService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -17,6 +16,7 @@ import java.util.Set;
 public class ClubServiceImpl implements ClubService {
 
     private final ClubRepository clubRepository;
+    private final EventServiceImpl eventService;
 
     @Override
     public List<Club> getAll() {
@@ -49,7 +49,8 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
-    public Set<Event> getEventsByClubs(Long id) {
-        return clubRepository.findClubById(id).getClubsEvents();
+    public List<Event> getEventsByClubs(Long id) {
+
+        return eventService.getEventsByClub(id);
     }
 }

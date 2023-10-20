@@ -48,6 +48,12 @@ public class EventController {
         return ResponseEntity.ok(eventService.saveEvent(event));
     }
 
+    @Operation(summary = "Get club")
+    @GetMapping("/{id}/club")
+    ResponseEntity<?> getClubOrg(@PathVariable Long id){
+        return ResponseEntity.ok(eventService.getClub(id));
+    }
+
 
 
 

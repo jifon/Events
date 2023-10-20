@@ -4,7 +4,6 @@ import com.eventshub.model.Club;
 import com.eventshub.model.Event;
 import com.eventshub.model.User;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -17,7 +16,7 @@ public interface ClubService {
     Club getByName(String name);
     Set<User> getHeadsOfClub(Long id);
     Set<User> getSubscribersOfClub(Long id);
-    Set<Event> getEventsByClubs(Long id);
+    List<Event> getEventsByClubs(Long id);
 
 
 }
