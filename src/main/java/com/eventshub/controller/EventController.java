@@ -1,5 +1,6 @@
 package com.eventshub.controller;
 
+import com.eventshub.model.Event;
 import com.eventshub.services.impl.EventServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
@@ -16,15 +17,15 @@ public class EventController {
 
 
     @Operation(summary = "get all events")
-    @GetMapping("/")
+    @GetMapping("/all")
     ResponseEntity<?> getAllEvents(){
-        return ResponseEntity.ok(eventService.getAllNotExpired());
+        return ResponseEntity.ok(eventService.getAll());
     }
 
     @Operation(summary = "Get information about one Event")
     @GetMapping("/{id}")
     ResponseEntity<?> infoAboutEvent(@PathVariable Long id){
-        return ResponseEntity.ok(eventService.findEvent(id));
+        return ResponseEntity.ok(eventService.findEventById(id));
     }
 
 
@@ -39,6 +40,15 @@ public class EventController {
     ResponseEntity<?> getParticipants(@PathVariable Long id){
         return ResponseEntity.ok(eventService.getParticipants(id));
     }
+
+
+    @Operation(summary = "Create new event")
+    @PostMapping("/create")
+    ResponseEntity<?> createEvent(@RequestBody Event event){
+        return ResponseEntity.ok(eventService.saveEvent(event));
+    }
+
+
 
 
 

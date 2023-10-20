@@ -62,10 +62,14 @@ public class EventServiceImpl implements EventService {
 
     //    get info about event
     @Override
-    public Event findEvent(Long id) {
+    public Event findEventById(Long id) {
         return eventRepository.findById(id).get();
     }
 
+    @Override
+    public Event findEventByName(String name) {
+        return eventRepository.findEventByEventName(name);
+    }
 
 
     //    get organizer-user   id - id мероприятия

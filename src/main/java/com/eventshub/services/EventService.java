@@ -21,6 +21,9 @@ public interface EventService {
 
 
     // Поиск мероприятия по id
-    Event findEvent(Long id);
+    Event findEventById(Long id);
+
+    Event findEventByName(String name);
+
 
 }
