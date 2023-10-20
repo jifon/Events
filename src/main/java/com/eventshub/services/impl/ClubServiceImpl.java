@@ -5,6 +5,7 @@ import com.eventshub.model.Event;
 import com.eventshub.model.User;
 import com.eventshub.payload.dto.EventDto;
 import com.eventshub.repository.ClubRepository;
+import com.eventshub.repository.EventRepository;
 import com.eventshub.services.ClubService;
 import com.eventshub.services.EventService;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,7 @@ public class ClubServiceImpl implements ClubService {
 
     private final ClubRepository clubRepository;
     private final EventService eventService;
+    private final EventRepository eventRepository;
 
     @Override
     public List<Club> getAll() {
@@ -53,14 +55,16 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
-    public Set<EventDto> getEventsByClubs(Long id) {
-        Set<Event> events = clubRepository.findClubById(id).getClubsEvents();
-        Set<EventDto> dtos = new HashSet<>();
-        for(Event event : events){
-            EventDto dto = eventService.eventToEventDto(event);
-            dtos.add(dto);
-
-        }
-        return dtos;
+    public List<Event> getEventsByClubs(Long clubId) {
+        List<Event> events = eventRepository.findAllEventsByClub(clubId);
+//        Set<Event> events = clubRepository.findClubById(id).getClubsEvents();
+//        Set<EventDto> dtos = new HashSet<>();
+//        for(Event event : events){
+//            EventDto dto = eventService.eventToEventDto(event);
+//            dtos.add(dto);
+//
+//        }
+//        return dtos;
+        return events;
     }
 }

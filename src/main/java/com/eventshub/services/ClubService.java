@@ -19,7 +19,7 @@ public interface ClubService {
     Club getByName(String name);
     Set<User> getHeadsOfClub(Long id);
     Set<User> getSubscribersOfClub(Long id);
-    Set<EventDto> getEventsByClubs(Long id);
+    List<Event> getEventsByClubs(Long id);
 
 
 }
