@@ -8,6 +8,7 @@ import com.eventshub.services.impl.AuthServiceImpl;
 import com.eventshub.services.impl.UserServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
@@ -29,14 +30,14 @@ public class AuthController {
     private final AuthServiceImpl authService;
 
 
-    @ApiOperation("login")
+    @Operation(summary = "login")
     @PostMapping("/sign-in")//логин
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
         return authService.authenticateUser(loginRequest);
     }
 
 
-    @ApiOperation("registration")
+    @Operation(summary = "registration")
     @PostMapping("/sign-up")//регистрация
     public ResponseEntity<MessageResponse> registerUser(@Valid @RequestBody SignupRequest signUpRequest)
             throws MessagingException, UnsupportedEncodingException {
@@ -45,7 +46,7 @@ public class AuthController {
     }
 
 
-    @ApiOperation("Verification")
+    @Operation(summary = "Verification")
     @GetMapping("/verifyUser")//рерификация кода который пришел на поч
     public ResponseEntity<MessageResponse> verifyUser(@Param("code") String code) {
         if (authService.verifyUser(code)) {
