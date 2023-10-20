@@ -17,7 +17,7 @@ import java.util.Set;
 @Table(name = "event")
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({ "organizer", "participants" })
+@JsonIgnoreProperties({ "organizer", "participants", "clubOrganizer" })
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
