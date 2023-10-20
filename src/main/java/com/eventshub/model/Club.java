@@ -46,4 +46,10 @@ public class Club {
 //    @OneToMany(mappedBy = "clubOrganizer", cascade = CascadeType.ALL)
 //    private Set<Event> clubsEvents  = new HashSet<>();;
 
+    public Club(String clubName, String description, String image) {
+        this.clubName = clubName;
+        this.description = description;
+        this.image = image;
+        this.subscribers = new HashSet<>();
+    }
 }
