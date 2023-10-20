@@ -2,6 +2,7 @@ package com.eventshub.model;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,6 +36,7 @@ public class Event {
 
     @ManyToOne
     @JoinColumn(name = "organizer_id")
+    @JsonIgnore
     private User organizer;
 
     @ManyToMany

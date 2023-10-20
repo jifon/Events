@@ -3,6 +3,7 @@ package com.eventshub.services.impl;
 import com.eventshub.model.Club;
 import com.eventshub.model.Event;
 import com.eventshub.model.User;
+import com.eventshub.payload.dto.EventDto;
 import com.eventshub.payload.dto.ParticipantEventDto;
 import com.eventshub.repository.EventRepository;
 import com.eventshub.services.EventService;
@@ -28,6 +29,32 @@ public class EventServiceImpl implements EventService {
 
     public EventServiceImpl(EventRepository eventRepository) {
         this.eventRepository = eventRepository;
+    }
+
+    public EventDto eventToEventDto(Event event) {
+        EventDto eventDto = new EventDto();
+        eventDto.setId(event.getId());
+        eventDto.setEventName(event.getEventName());
+        eventDto.setPlace(event.getPlace());
+        eventDto.setDate(event.getDate());
+        eventDto.setDescription(event.getDescription());
+        eventDto.setVerified(event.isVerified());
+        eventDto.setImage(event.getImage());
+
+        // Set the name of the club organizer
+        if (event.getClubOrganizer() != null) {
+            eventDto.setNameOfClubOrganizer(event.getClubOrganizer().getClubName());
+        }
+
+        // Set the name of the user organizer (assuming you have a method to get the user's name)
+        if (event.getOrganizer() != null) {
+            eventDto.setNameOfUserOrganizer(event.getOrganizer().getFirstName() + " " + event.getOrganizer().getLastName());
+        }
+
+        // Set the quantity of participants
+        eventDto.setQuantityOfParticipants(event.getParticipants().size());
+
+        return eventDto;
     }
 
     // все мероприятия, которые будут в будущем

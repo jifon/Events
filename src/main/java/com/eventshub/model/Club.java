@@ -1,6 +1,7 @@
 package com.eventshub.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -40,6 +41,7 @@ public class Club {
     )
     private Set<User> headers;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "clubOrganizer", cascade = CascadeType.ALL)
     private Set<Event> clubsEvents;
 
