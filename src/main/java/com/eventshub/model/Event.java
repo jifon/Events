@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -46,6 +47,13 @@ public class Event {
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
     private Set<User> participants;
+
+    public void addParticipant(User user) {
+        if (participants == null) {
+            participants = new HashSet<>();
+        }
+        participants.add(user);
+    }
 
 
 }

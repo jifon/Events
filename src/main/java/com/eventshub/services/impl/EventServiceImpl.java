@@ -31,6 +31,7 @@ public class EventServiceImpl implements EventService {
         this.eventRepository = eventRepository;
     }
 
+    @Override
     public EventDto eventToEventDto(Event event) {
         EventDto eventDto = new EventDto();
         eventDto.setId(event.getId());
@@ -87,8 +88,8 @@ public class EventServiceImpl implements EventService {
 
     //    get info about event
     @Override
-    public Event findEventById(Long id) {
-        return eventRepository.findById(id).get();
+    public Optional<Event> findEventById(Long id) {
+        return eventRepository.findById(id);
     }
 
     @Override
