@@ -1,13 +1,13 @@
 package com.eventshub.model;
 
 
-//import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -22,9 +22,23 @@ public class Club {
     private String description;
     private String image;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<User> headsAndFollowers;
+    @ManyToMany
+    @JoinTable(
+            name = "user_club_subscriptions",
+            joinColumns = @JoinColumn(name = "club_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private Set<User> subscribers;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Club> clubs;
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_club_heading",
+            joinColumns = @JoinColumn(name = "club_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private Set<User> headers;
+
+    @OneToMany(mappedBy = "clubOrganizer", cascade = CascadeType.ALL)
+    private Set<Event> clubsEvents;
 }

@@ -1,4 +1,4 @@
-package com.eventshub.model;
+package com.eventshub.model.enums;
 
 public enum ERole {
     ROLE_USER,

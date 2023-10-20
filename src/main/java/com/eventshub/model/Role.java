@@ -1,5 +1,6 @@
 package com.eventshub.model;
 
+import com.eventshub.model.enums.ERole;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,9 +13,9 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Getter
 @Setter
-
 @Table(name = "roles")
 public class Role {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

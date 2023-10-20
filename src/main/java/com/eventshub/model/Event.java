@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -26,10 +27,19 @@ public class Event {
     private boolean verified;
     private String image;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<User> participantsAndOrganizers;
-
     @ManyToOne
     @JoinColumn(name = "club_id")
     private Club clubOrganizer;
+
+    @ManyToOne
+    @JoinColumn(name = "organizer_id")
+    private User organizer;
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_event_participants",
+            joinColumns = @JoinColumn(name = "event_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private Set<User> participants;
 }

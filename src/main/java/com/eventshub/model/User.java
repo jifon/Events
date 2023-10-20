@@ -32,14 +32,10 @@ public class User {
     @Size(max = 20)
     private String lastName;
 
-    @Size(max = 20)
-    private String middleName;
-
     @NotBlank
     @Size(max = 50)
     @Email
     private String email;
-
 
     @Column( length = 64)
     private String verificationCode;
@@ -64,6 +60,18 @@ public class User {
 
     private LocalDateTime dateDeleted;
 
+    @ManyToMany(mappedBy = "subscribers")
+    private Set<Club> subscribedClubs;
+
+    @ManyToMany(mappedBy = "headers")
+    private Set<Club> ownedClubs;
+
+    @OneToMany(mappedBy = "organizer", cascade = CascadeType.ALL)
+    private Set<Event> createdEvents;
+
+    @ManyToMany(mappedBy = "participants")
+    private Set<Event> participatedEvents;
+
 
     public User(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
@@ -74,11 +82,7 @@ public class User {
         this.dateCreated = LocalDateTime.now();
     }
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Event> events;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Club> clubs;
 
 
 }
