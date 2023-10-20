@@ -18,6 +18,31 @@ public class UserController {
     private final UserServiceImpl userService;
 
 
+    @Operation(summary = "get events user organizes")
+    @GetMapping("/all-my-org-events")
+    ResponseEntity<?> getAllCreatedEvents( ){
+        return ResponseEntity.ok(userService.getAllCreatedEvents());
+    }
+
+    //events example
+    @Operation(summary = "get events that I will participate")
+    @GetMapping("/all-my-part-events")
+    ResponseEntity<?> getAllEventsThatParticipate(){
+        return ResponseEntity.ok(userService.getAllParticipatedEvents());
+    }
+
+    @Operation(summary = "get my owned clubs")
+    @GetMapping("/all-my-owned-clubs")
+    ResponseEntity<?> getAllMyClubs(){
+        return ResponseEntity.ok(userService.getAllMyOwnedClubs());
+    }
+
+    @Operation(summary = "get my subscribed clubs")
+    @GetMapping("/all-my-subscribed-clubs")
+    ResponseEntity<?> getAllMySubscribedClubs(){
+        return ResponseEntity.ok(userService.getAllMySubscribedClubs());
+    }
+
 
     @Operation(summary = "Get all not deleted users")
     @GetMapping("/all-not-deleted")
@@ -51,7 +76,6 @@ public class UserController {
     ResponseEntity<?> getAllUsers() {
         return ResponseEntity.ok(userService.getAllUsers());
     }
-
 
 
 

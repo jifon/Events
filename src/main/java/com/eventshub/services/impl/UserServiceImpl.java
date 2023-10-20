@@ -2,6 +2,8 @@ package com.eventshub.services.impl;
 
 import com.eventshub.exception.NotAuthenticatedException;
 import com.eventshub.exception.NotFoundException;
+import com.eventshub.model.Club;
+import com.eventshub.model.Event;
 import com.eventshub.model.User;
 import com.eventshub.repository.UserRepository;
 import com.eventshub.services.UserService;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -63,15 +66,23 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
+    @Override
+    public Set<Event> getAllCreatedEvents() { return getAuthentication().getCreatedEvents();}
+
+    @Override
+    public Set<Event> getAllParticipatedEvents() { return getAuthentication().getParticipatedEvents();}
+
+    @Override
+    public Set<Club> getAllMyOwnedClubs() { return getAuthentication().getOwnedClubs(); }
+
+    @Override
+    public Set<Club> getAllMySubscribedClubs() { return getAuthentication().getSubscribedClubs(); }
+
+
     public User getCurrentUser() {
         return getAuthentication();
     }
 
-    public User deleteCurrentUser() {
-        User user = getAuthentication();
-        deleteUserById(user.getId());
-        return user;
 
-    }
 
 }
