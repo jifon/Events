@@ -1,6 +1,7 @@
 package com.eventshub.controller;
 
 import com.eventshub.services.impl.ClubServiceImpl;
+import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/club")
+@Api
 public class ClubController {
 
     private final ClubServiceImpl clubService;
@@ -29,19 +31,19 @@ public class ClubController {
     }
 
     @Operation(summary = "get heads of club with ID")
-    @GetMapping("/{$id}/heads")
+    @GetMapping("/{id}/organizers")
     ResponseEntity<?> getHeadsOfClub(@PathVariable Long id){
         return ResponseEntity.ok(clubService.getHeadsOfClub(id));
     }
 
     @Operation(summary = "get subscribers of club")
-    @GetMapping("/{$id}/subscribers")
+    @GetMapping("/{id}/subscribers")
     ResponseEntity<?> getSubscribersOfClub(@PathVariable Long id){
         return ResponseEntity.ok(clubService.getSubscribersOfClub(id));
     }
 
     @Operation(summary = "get events of club")
-    @GetMapping("/{$id}/events")
+    @GetMapping("/{id}/events")
     ResponseEntity<?> getEventsOfClub(@PathVariable Long id){
         return ResponseEntity.ok(clubService.getEventsByClubs(id));
     }
