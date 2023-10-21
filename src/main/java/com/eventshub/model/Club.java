@@ -42,14 +42,20 @@ public class Club {
     )
     private Set<User> headers;
 
-//    @JsonIgnore
+////    @JsonIgnore
+//<<<<<<< HEAD
 //    @OneToMany(mappedBy = "clubOrganizer", cascade = CascadeType.ALL)
-//    private Set<Event> clubsEvents  = new HashSet<>();;
+//    private Set<Event> clubsEvents;
+//=======
+////    @OneToMany(mappedBy = "clubOrganizer", cascade = CascadeType.ALL)
+////    private Set<Event> clubsEvents  = new HashSet<>();;
+//>>>>>>> origin/master
 
-    public Club(String clubName, String description, String image) {
+    public Club(String clubName, String description, String image, Set<User> headers) {
         this.clubName = clubName;
         this.description = description;
         this.image = image;
         this.subscribers = new HashSet<>();
+        this.headers = headers;
     }
 }

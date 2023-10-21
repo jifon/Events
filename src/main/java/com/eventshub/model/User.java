@@ -67,6 +67,10 @@ public class User {
     @ManyToMany(mappedBy = "headers")
     private Set<Club> ownedClubs;
 
+    @JsonIgnore
+    @ManyToMany(mappedBy = "participants")
+    private Set<Event> participatedEvents;
+
     @OneToMany(mappedBy = "organizer", cascade = CascadeType.ALL)
     private Set<Event> createdEvents;
 

@@ -57,6 +57,12 @@ public class UserController {
         return ResponseEntity.ok(userService.getAllMySubscribedClubs());
     }
 
+    @Operation(summary = "get my participated events")
+    @GetMapping("/all-my-participated-events")
+    ResponseEntity<?> getAllParticipatedEvents(){
+        return ResponseEntity.ok(userService.getAllParticipatedEvents());
+    }
+
     @Operation(summary = "Get all not deleted users")
     @GetMapping("/all-not-deleted")
     ResponseEntity<?> getAllNotDeletedUsers() {

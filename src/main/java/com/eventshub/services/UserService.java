@@ -26,6 +26,8 @@ public interface UserService {
 
     Set<Club> getAllMySubscribedClubs();
 
+    Set<Event> getAllParticipatedEvents();
+
     void participateInEvent(Long id) throws MessagingException, UnsupportedEncodingException;
 
 }
