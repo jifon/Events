@@ -119,6 +119,11 @@ public class EventServiceImpl implements EventService {
         return participantEventDtos;
     }
 
+    public Integer getParticipantsCount(Long id){
+        Set<User> users = eventRepository.findEventById(id).getParticipants();
+        return users.size();
+    }
+
 //    public Set<User> getParticipants(Long id){
 //        return eventRepository.findById(id).get().getParticipants();
 //    }
