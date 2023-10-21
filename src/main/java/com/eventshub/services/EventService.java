@@ -7,6 +7,7 @@ import com.eventshub.model.User;
 import com.eventshub.payload.dto.EditEventDto;
 import com.eventshub.payload.dto.EventDto;
 import com.eventshub.payload.dto.ParticipantEventDto;
+import com.eventshub.payload.response.EventRespnseWithPart;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -49,6 +50,8 @@ public interface EventService {
     void editEvent (EditEventDto eventDto);
 
     List<Event> getAllExpiredEvent();
+
+    EventRespnseWithPart getParticipantsCount(Long id);
 
 
 
