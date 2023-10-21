@@ -9,6 +9,12 @@ public class EditEventDto {
     private String place;
     private Date date;
     private String description;
+    private String nameOfClubOrganizer;
+    private String nameOfUserOrganizer;
+    private int quantityOfParticipants;
+
+    private String image;
+    private boolean verified;
 
     public Long getId() {
         return id;
@@ -50,9 +56,44 @@ public class EditEventDto {
         this.description = description;
     }
 
-    public void setVerified(boolean verified) {
+
+    public String getNameOfClubOrganizer() {
+        return nameOfClubOrganizer;
+    }
+
+    public void setNameOfClubOrganizer(String nameOfClubOrganizer) {
+        this.nameOfClubOrganizer = nameOfClubOrganizer;
+    }
+
+    public String getNameOfUserOrganizer() {
+        return nameOfUserOrganizer;
+    }
+
+    public void setNameOfUserOrganizer(String nameOfUserOrganizer) {
+        this.nameOfUserOrganizer = nameOfUserOrganizer;
+    }
+
+    public int getQuantityOfParticipants() {
+        return quantityOfParticipants;
+    }
+
+    public void setQuantityOfParticipants(int quantityOfParticipants) {
+        this.quantityOfParticipants = quantityOfParticipants;
+    }
+
+    public String getImage() {
+        return image;
     }
 
     public void setImage(String image) {
+        this.image = image;
+    }
+
+    public boolean isVerified() {
+        return verified;
+    }
+
+    public void setVerified(boolean verified) {
+        this.verified = verified;
     }
 }

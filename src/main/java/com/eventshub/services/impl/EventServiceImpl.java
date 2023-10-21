@@ -54,18 +54,18 @@ public class EventServiceImpl implements EventService {
         eventDto.setVerified(event.isVerified());
         eventDto.setImage(event.getImage());
 
-        // Set the name of the club organizer
-//        if (event.getClubOrganizer() != null) {
-//            eventDto.setNameOfClubOrganizer(event.getClubOrganizer().getClubName());
-//        }
-//
-//        // Set the name of the user organizer (assuming you have a method to get the user's name)
-//        if (event.getOrganizer() != null) {
-//            eventDto.setNameOfUserOrganizer(event.getOrganizer().getFirstName() + " " + event.getOrganizer().getLastName());
-//        }
-//
-//        // Set the quantity of participants
-//        eventDto.setQuantityOfParticipants(event.getParticipants().size());
+         //Set the name of the club organizer
+        if (event.getClubOrganizer() != null) {
+            eventDto.setNameOfClubOrganizer(event.getClubOrganizer().getClubName());
+        }
+
+        // Set the name of the user organizer (assuming you have a method to get the user's name)
+        if (event.getOrganizer() != null) {
+            eventDto.setNameOfUserOrganizer(event.getOrganizer().getFirstName() + " " + event.getOrganizer().getLastName());
+        }
+
+        // Set the quantity of participants
+        eventDto.setQuantityOfParticipants(event.getParticipants().size());
 
         return eventDto;
     }
@@ -87,8 +87,14 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<Event> getAll(){
-        return eventRepository.findAll();
+    public List<EditEventDto> getAll(){
+        List<Event> events = eventRepository.findAll();
+        List<EditEventDto> eventDtos = new ArrayList<>();
+        for(Event event: events){
+            EditEventDto eventDto = eventToEventDto(event);
+            eventDtos.add(eventDto);
+        }
+        return eventDtos;
     }
 
     @Override
@@ -128,6 +134,12 @@ public class EventServiceImpl implements EventService {
     @Override
     public Optional<Event> findEventById(Long id) {
         return eventRepository.findById(id);
+    }
+
+    @Override
+    public EditEventDto findEventDtoById(Long id) {
+        Event event = eventRepository.findById(id).orElse(null);
+        return eventToEventDto(event);
     }
 
     @Override

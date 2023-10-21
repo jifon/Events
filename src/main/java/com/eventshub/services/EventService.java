@@ -21,7 +21,7 @@ public interface EventService {
     // Список всех мероприятий
     List<Event> getAllNotExpired();
 
-    List<Event> getAll();
+    List<EditEventDto> getAll();
 
     // Создание новых мероприятий
     //Event saveEvent(Event event);
@@ -34,6 +34,8 @@ public interface EventService {
 
     // Поиск мероприятия по id
     Optional<Event> findEventById(Long id);
+
+    EditEventDto findEventDtoById(Long id);
 
     Event findEventByName(String name);
 

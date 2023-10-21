@@ -45,7 +45,7 @@ public class EventController {
     @Operation(summary = "Get information about one Event")
     @GetMapping("/{id}")
     ResponseEntity<?> infoAboutEvent(@PathVariable Long id){
-        return ResponseEntity.ok(eventService.findEventById(id));
+        return ResponseEntity.ok(eventService.findEventDtoById(id));
     }
 
 
