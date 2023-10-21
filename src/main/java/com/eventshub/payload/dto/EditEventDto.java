@@ -49,4 +49,10 @@ public class EditEventDto {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public void setVerified(boolean verified) {
+    }
+
+    public void setImage(String image) {
+    }
 }

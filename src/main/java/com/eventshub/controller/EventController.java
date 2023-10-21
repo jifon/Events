@@ -64,8 +64,12 @@ public class EventController {
 
     @Operation(summary = "Create new event")
     @PostMapping("/create")
-    ResponseEntity<?> createEvent(@RequestBody EventDto eventDto,
+    ResponseEntity<?> createEvent(@RequestParam String eventName,
+            @RequestParam String place,
+            @RequestParam String date,
+                                  @RequestParam String description,
                                   @RequestPart MultipartFile img){
+        EventDto eventDto = new EventDto(eventName, place, date, description);
         eventService.saveEvent(eventDto, img, userService.getCurrentUser());
         return ResponseEntity.ok(HttpStatus.OK);
     }

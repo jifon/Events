@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
@@ -41,8 +43,8 @@ public class EventServiceImpl implements EventService {
 //    }
 
     @Override
-    public EventDto eventToEventDto(Event event) {
-        EventDto eventDto = new EventDto();
+    public EditEventDto eventToEventDto(Event event) {
+        EditEventDto eventDto = new EditEventDto();
         eventDto.setId(event.getId());
         eventDto.setEventName(event.getEventName());
         eventDto.setPlace(event.getPlace());
@@ -52,17 +54,17 @@ public class EventServiceImpl implements EventService {
         eventDto.setImage(event.getImage());
 
         // Set the name of the club organizer
-        if (event.getClubOrganizer() != null) {
-            eventDto.setNameOfClubOrganizer(event.getClubOrganizer().getClubName());
-        }
-
-        // Set the name of the user organizer (assuming you have a method to get the user's name)
-        if (event.getOrganizer() != null) {
-            eventDto.setNameOfUserOrganizer(event.getOrganizer().getFirstName() + " " + event.getOrganizer().getLastName());
-        }
-
-        // Set the quantity of participants
-        eventDto.setQuantityOfParticipants(event.getParticipants().size());
+//        if (event.getClubOrganizer() != null) {
+//            eventDto.setNameOfClubOrganizer(event.getClubOrganizer().getClubName());
+//        }
+//
+//        // Set the name of the user organizer (assuming you have a method to get the user's name)
+//        if (event.getOrganizer() != null) {
+//            eventDto.setNameOfUserOrganizer(event.getOrganizer().getFirstName() + " " + event.getOrganizer().getLastName());
+//        }
+//
+//        // Set the quantity of participants
+//        eventDto.setQuantityOfParticipants(event.getParticipants().size());
 
         return eventDto;
     }
@@ -98,7 +100,15 @@ public class EventServiceImpl implements EventService {
         }
         Event event = new Event();
         event.setEventName(eventDto.getEventName());
-        event.setDate(eventDto.getDate());
+        SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date1;
+        try {
+            date1=formatter.parse(eventDto.getDate());
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        //event.setId(5L);
+        event.setDate(date1);
         event.setDescription(eventDto.getDescription());
         event.setPlace(eventDto.getPlace());
         event.setOrganizer(user);

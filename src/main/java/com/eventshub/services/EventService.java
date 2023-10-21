@@ -36,7 +36,7 @@ public interface EventService {
 
     Event findEventByName(String name);
 
-    EventDto eventToEventDto(Event event);
+    EditEventDto eventToEventDto(Event event);
 
     //    get organizer-user   id - id мероприятия
     ParticipantEventDto getOrganizer(Long id);
