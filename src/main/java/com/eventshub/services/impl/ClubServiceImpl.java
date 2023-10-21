@@ -3,6 +3,7 @@ package com.eventshub.services.impl;
 import com.eventshub.model.Club;
 import com.eventshub.model.Event;
 import com.eventshub.model.User;
+import com.eventshub.payload.dto.EditEventDto;
 import com.eventshub.payload.dto.EventDto;
 import com.eventshub.payload.request.ClubRequest;
 import com.eventshub.payload.response.ClubWithEventsCount;
@@ -29,6 +30,7 @@ public class ClubServiceImpl implements ClubService {
     private final UserServiceImpl userService;
     private final FileUploadService fileUploadService;
     private final EventRepository eventRepository;
+    private final EventServiceImpl eventService;
 
     @Override
     public List<Club> getAll() {
@@ -74,17 +76,15 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
-    public List<Event> getEventsByClubs(Long clubId) {
+    public List<EditEventDto> getEventsByClubs(Long clubId) {
         List<Event> events = eventRepository.findAllEventsByClub(clubId);
-//        Set<Event> events = clubRepository.findClubById(id).getClubsEvents();
-//        Set<EventDto> dtos = new HashSet<>();
-//        for(Event event : events){
-//            EventDto dto = eventService.eventToEventDto(event);
-//            dtos.add(dto);
-//
-//        }
-//        return dtos;
-        return events;
+        //Set<Event> events = clubRepository.findClubById(id).getClubsEvents();
+        List<EditEventDto> dtos = new ArrayList<>();
+        for(Event event : events){
+            EditEventDto dto = eventService.eventToEventDto(event);
+            dtos.add(dto);
+        }
+        return dtos;
     }
 
 //    @Override
