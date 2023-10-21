@@ -41,7 +41,7 @@ public class EventController {
         return ResponseEntity.ok(eventService.getParticipants(id));
     }
 
-    @Operation(summary = "Get event participants count")
+    @Operation(summary = "Get event and participants count")
     @GetMapping("/{id}/participants-count")
     ResponseEntity<?> getParticipantsCount(@PathVariable Long id){
         return ResponseEntity.ok(eventService.getParticipantsCount(id));

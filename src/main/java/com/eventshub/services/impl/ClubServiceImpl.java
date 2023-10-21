@@ -5,6 +5,7 @@ import com.eventshub.model.Event;
 import com.eventshub.model.User;
 import com.eventshub.payload.dto.EventDto;
 import com.eventshub.payload.request.ClubRequest;
+import com.eventshub.payload.response.ClubWithEventsCount;
 import com.eventshub.repository.ClubRepository;
 import com.eventshub.repository.EventRepository;
 import com.eventshub.services.ClubService;
@@ -83,4 +84,18 @@ public class ClubServiceImpl implements ClubService {
 //        return dtos;
         return events;
     }
+
+//    @Override
+//    public ClubWithEventsCount getCurrentClubCountEvent(Long id) {
+//        Club club = clubRepository.findClubById(id);
+//        ClubWithEventsCount response = new ClubWithEventsCount();
+//        response.setId(club.getId());
+//        response.setClubName(club.getClubName());
+//        response.setDescription(club.getDescription());
+//        response.setImage(club.getImage());
+//        List<Event> events = eventRepository.findAllEventsByClub(id);
+//        response.setEventsCount(events.size());
+//        return response;
+//    }
+
 }

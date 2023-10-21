@@ -30,6 +30,14 @@ public class ClubController {
         return ResponseEntity.ok(clubService.getByID(id));
     }
 
+
+//    @Operation(summary = "get information about the club and count of event with ID")
+//    @GetMapping("/{id}")
+//    ResponseEntity<?> getCurrentClubCountEvent(@PathVariable Long id){
+//        return ResponseEntity.ok(clubService.getCurrentClubCountEvent(id));
+//    }
+
+
     @Operation(summary = "get heads of club with ID")
     @GetMapping("/{id}/organizers")
     ResponseEntity<?> getHeadsOfClub(@PathVariable Long id){

@@ -5,6 +5,7 @@ import com.eventshub.model.Event;
 import com.eventshub.model.User;
 import com.eventshub.payload.dto.EventDto;
 import com.eventshub.payload.request.ClubRequest;
+import com.eventshub.payload.response.ClubWithEventsCount;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ public interface ClubService {
     Set<User> getHeadsOfClub(Long id);
     Set<User> getSubscribersOfClub(Long id);
     List<Event> getEventsByClubs(Long id);
+//    ClubWithEventsCount getCurrentClubCountEvent(Long id);
 
 
 }

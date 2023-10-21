@@ -5,6 +5,7 @@ import com.eventshub.model.Event;
 import com.eventshub.model.User;
 import com.eventshub.payload.dto.EventDto;
 import com.eventshub.payload.dto.ParticipantEventDto;
+import com.eventshub.payload.response.EventRespnseWithPart;
 import com.eventshub.repository.EventRepository;
 import com.eventshub.services.EventService;
 import org.springframework.stereotype.Service;
@@ -119,9 +120,19 @@ public class EventServiceImpl implements EventService {
         return participantEventDtos;
     }
 
-    public Integer getParticipantsCount(Long id){
-        Set<User> users = eventRepository.findEventById(id).getParticipants();
-        return users.size();
+    public EventRespnseWithPart getParticipantsCount(Long id){
+        Event event = eventRepository.findEventById(id);
+        Integer countOfParticipants = event.getParticipants().size();
+        EventRespnseWithPart response = new EventRespnseWithPart();
+        response.setCountOfParticipants(countOfParticipants);
+        response.setEventName(event.getEventName());
+        response.setDate(event.getDate());
+        response.setDescription(event.getDescription());
+        response.setImage(event.getImage());
+        response.setId(event.getId());
+        response.setPlace(event.getPlace());
+        response.setVerified(event.isVerified());
+        return response;
     }
 
 //    public Set<User> getParticipants(Long id){
