@@ -10,6 +10,7 @@ import com.eventshub.repository.EventRepository;
 import com.eventshub.services.ClubService;
 import com.eventshub.services.EventService;
 import com.eventshub.services.FileUploadService;
+import com.eventshub.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,8 +25,8 @@ import java.util.Set;
 public class ClubServiceImpl implements ClubService {
 
     private final ClubRepository clubRepository;
-    private final EventService eventService;
-    //private final FileUploadService fileUploadService;
+    private final UserServiceImpl userService;
+    private final FileUploadService fileUploadService;
     private final EventRepository eventRepository;
 
     @Override
@@ -35,19 +36,20 @@ public class ClubServiceImpl implements ClubService {
 
     @Override
     public Club create(Long userID, ClubRequest clubRequest) {
-//        String imageURL;
-//        try {
-//            imageURL = fileUploadService.uploadFile(clubRequest.getMultipartFile());
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//        Set<User> users = new HashSet<>();
-//        Club club = new Club(
-//                clubRequest.getClubName(),
-//                clubRequest.getDescription(),
-//                imageURL);
-//        return club;
-        return null;
+        String imageURL;
+        try {
+            imageURL = fileUploadService.uploadFile(clubRequest.getMultipartFile());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Set<User> users = new HashSet<>();
+        users.add(userService.getNotDeletedUserById(userID));
+        Club club = new Club(
+                clubRequest.getClubName(),
+                clubRequest.getDescription(),
+                imageURL, users);
+        return club;
+        //return null;
     }
 
     @Override

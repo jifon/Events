@@ -21,4 +21,9 @@ public class ClubRequest {
     private String description;
     @NotBlank
     private MultipartFile multipartFile;
+
+    public ClubRequest(String clubName, String description) {
+        this.clubName = clubName;
+        this.description = description;
+    }
 }
